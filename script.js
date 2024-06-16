@@ -52,18 +52,24 @@ function updateCartModal(){
     let total = 0;
     cart.forEach(item => {
         const itemElement = document.createElement('div');
-        itemElement.classList.add('cart-item');
+        itemElement.classList.add('cart-item', 'flex', 'justify-between', 'items-center', 'mb-2', 'p-2', 'border-b', 'border-gray-200');
         itemElement.innerHTML = `
-            <div>${item.name}</div>
-            <div>${item.quantity} x $${item.price}</div>
+            <div class="flex-1">${item.name}</div>
+            <div class="flex items-center">
+                <div class="flex items-center">
+                    <button class="remove-one-btn bg-red-500 text-white rounded-full px-2 py-1 mx-1" data-name="${item.name}">-</button>
+                    <span class="mx-2">${item.quantity} x R$${item.price.toFixed(2)}</span>
+                    <button class="add-one-btn bg-green-500 text-white rounded-full px-2 py-1 mx-1" data-name="${item.name}">+</button>
+                </div>
+            </div>
         `;
         cartItemsContainer.appendChild(itemElement);
         total += item.quantity * item.price;
     });
-    cartTotal.innerText = `$${total.toFixed(2)}`;
+    cartTotal.innerText = `R$${total.toFixed(2)}`;
     cartCounter.innerText = cart.reduce((acc, item) => acc + item.quantity, 0);
-
 }
+
 
 checkoutBtn.addEventListener('click', () => {
     if(cart.length === 0){
@@ -84,3 +90,19 @@ addressInput.addEventListener('input', () => {
     addressWarn.style.display = 'none';
 });
 
+cartItemsContainer.addEventListener('click', (e) => {
+    const parentButton = e.target.closest('button');
+    if(parentButton){
+        const name = parentButton.getAttribute('data-name');
+        const item = cart.find(item => item.name === name);
+        if(parentButton.classList.contains('add-one-btn')){
+            item.quantity += 1;
+        }else{
+            item.quantity -= 1;
+            if(item.quantity === 0){
+                cart = cart.filter(item => item.name !== name);
+            }
+        }
+        updateCartModal();
+    }
+});
