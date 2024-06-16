@@ -1,6 +1,8 @@
 Rodar o arquivo com:
     npm run dev
-    
+
+npm install
+
 npm init y 
     Para criar um arquivo package.json com as informações do projeto
 
