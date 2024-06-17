@@ -10,6 +10,7 @@ const addressInput = document.getElementById('address');
 const addressWarn = document.getElementById('address-warn');
 const displayAddress = document.getElementById('display-address');
 
+
 let cart = [];
 let address = '';
 
@@ -79,29 +80,52 @@ function updateCartModal() {
 }
 
 checkoutBtn.addEventListener('click', () => {
-    if (cart.length === 0) {
-      alert('Seu carrinho está vazio!');
-    } else if (addressInput.value === '') {
+  if (cart.length === 0) {
+      showAlert('Seu carrinho está vazio!');
+  } else if (addressInput.value === '') {
       addressWarn.style.display = 'block';
-    } else {
-     
-      const confirmationMessage = `Pedido feito!\n\n`;
+  } else {
+      const confirmationMessage = 'Confirme o pedido antes de efetuar o pagamento!\n\n';
       const orderDetails = cart.map(item => `${item.quantity}x ${item.name} - R$${(item.quantity * item.price).toFixed(2)}`).join('\n');
       const totalAmount = `Total: R$${cartTotal.innerText}`;
-      const deliveryAddress = `Endereço de entrega: ${address}`;
-  
+      const deliveryAddress = `Endereço de entrega: ${addressInput.value}`;
+
       const finalMessage = `${confirmationMessage}${orderDetails}\n${totalAmount}\n${deliveryAddress}`;
-  
-      alert(finalMessage);
-  
-      
+
+      showAlert(finalMessage);
+
       cart = [];
       updateCartModal();
       addressInput.value = '';
       addressWarn.style.display = 'none';
       cartModal.style.display = 'none';
-    }
+  }
+});
+
+function showAlert(message) {
+  const alertModal = document.createElement('div');
+  alertModal.className = 'fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50';
+
+  const alertBox = document.createElement('div');
+  alertBox.className = 'bg-white rounded-lg p-6 w-11/12 md:w-1/3';
+
+  const alertMessage = document.createElement('p');
+  alertMessage.innerText = message;
+  alertMessage.className = 'mb-4 whitespace-pre-wrap';  
+
+  const closeAlertBtn = document.createElement('button');
+  closeAlertBtn.innerText = 'OK';
+  closeAlertBtn.className = 'bg-red-500 text-white px-4 py-2 rounded hover:bg-green-600';
+  closeAlertBtn.addEventListener('click', () => {
+      document.body.removeChild(alertModal);
   });
+
+  alertBox.appendChild(alertMessage);
+  alertBox.appendChild(closeAlertBtn);
+  alertModal.appendChild(alertBox);
+  document.body.appendChild(alertModal);
+}
+
   
 
 addressInput.addEventListener('input', () => {
@@ -131,24 +155,11 @@ cartItemsContainer.addEventListener('click', (e) => {
   }
 });
 
-function checkOpen() {
-  const data = new Date();
-  const hora = data.getHours();
-  return hora >= 17 && hora <= 23;
-}
-
-if (!checkOpen()) {
-  const body = document.querySelector('body');
-  body.innerHTML = `
-    <div class="flex h-screen justify-center items-center">
-      <h1 class="text-4xl">Desculpe, estamos fechados!</h1>
-    </div>
-  `;
-}
 
 document.getElementById('close-modal-btn').addEventListener('click', function () {
-  document.getElementById('cart-modal').classList.add('hidden');
+document.getElementById('cart-modal').classList.add('hidden');
 });
+
 
 document.getElementById('checkout-btn').addEventListener('click', function () {
   const address = document.getElementById('address').value.trim();
