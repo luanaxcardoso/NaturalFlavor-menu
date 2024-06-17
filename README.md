@@ -28,8 +28,8 @@ npm run dev
 ```
 
 
-https://github.com/luanaxcardoso/NaturalFlavor-menu/assets/112970416/0b85dc81-71bb-487e-8757-93d9ae5bc2ab
 
+https://github.com/luanaxcardoso/NaturalFlavor-menu/assets/112970416/3bfef961-3ed6-4c89-8a52-079dfc9cba93
 
 
 
