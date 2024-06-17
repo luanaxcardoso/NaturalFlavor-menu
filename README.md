@@ -12,6 +12,7 @@
 - Calcular o total do carrinho.
 - Inserir endereço de entrega.
 - Finalizar pedido.
+- Redirecionamento para WhatsApp 
 ---
 Instalação
 git clone <URL do repositório>
@@ -29,7 +30,10 @@ npm run dev
 
 
 
-https://github.com/luanaxcardoso/NaturalFlavor-menu/assets/112970416/3bfef961-3ed6-4c89-8a52-079dfc9cba93
+https://github.com/luanaxcardoso/NaturalFlavor-menu/assets/112970416/472731ea-1991-4046-a4e2-908e0fb13b87
+
+
+
 
 
 
