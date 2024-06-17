@@ -102,6 +102,7 @@ checkoutBtn.addEventListener('click', () => {
   }
 });
 
+
 function showAlert(message) {
   const alertModal = document.createElement('div');
   alertModal.className = 'fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50';
@@ -126,7 +127,6 @@ function showAlert(message) {
   document.body.appendChild(alertModal);
 }
 
-  
 
 addressInput.addEventListener('input', () => {
   addressWarn.style.display = 'none';
@@ -191,3 +191,10 @@ function toggleCheckoutButton() {
     checkoutBtn.disabled = !(isAddressConfirmed && isPaymentSelected);
 }
 
+document.getElementById('whatsapp-btn').addEventListener('click', function(event) {
+  event.preventDefault();
+  const phone = '5512991871456'; 
+  const message = 'Tem alguma dúvida ou quer fazer seu pedido? Estamos aqui para te ajudar!' 
+  const url = `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
+  window.open(url, '_blank');
+});
