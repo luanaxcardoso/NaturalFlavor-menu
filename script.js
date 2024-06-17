@@ -85,7 +85,7 @@ checkoutBtn.addEventListener('click', () => {
       addressWarn.style.display = 'block';
     } else {
      
-      const confirmationMessage = `Obrigado por sua compra!\n\n`;
+      const confirmationMessage = `Pedido feito!\n\n`;
       const orderDetails = cart.map(item => `${item.quantity}x ${item.name} - R$${(item.quantity * item.price).toFixed(2)}`).join('\n');
       const totalAmount = `Total: R$${cartTotal.innerText}`;
       const deliveryAddress = `Endereço de entrega: ${address}`;
@@ -169,3 +169,14 @@ document.getElementById('address').addEventListener('input', function() {
 document.getElementById('confirm-address').addEventListener('change', function() {
     document.getElementById('checkout-btn').disabled = !this.checked;
 });
+
+function toggleCheckoutButton() {
+    const confirmAddressCheckbox = document.getElementById('confirm-address');
+    const checkoutBtn = document.getElementById('checkout-btn');
+
+    const isAddressConfirmed = confirmAddressCheckbox.checked;
+    const isPaymentSelected = selectedPaymentOption !== '';
+
+    checkoutBtn.disabled = !(isAddressConfirmed && isPaymentSelected);
+}
+

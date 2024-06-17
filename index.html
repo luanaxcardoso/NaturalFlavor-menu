@@ -21,7 +21,7 @@
                 <span class="font-bold">Rua Andorras, nº 120, Gonzaga - São Paulo</span>
             </span>
             <div class="bg-lime-500 px-4 py-1 rounded-lg mt-5 text-black font-bold text-2xl shadow-lg" id="date-span">
-                <span class="text-shadow">Seg a Dom - 18h às 23h</span>
+                <span class="text-shadow">Seg a Dom - 17h às 23h</span>
             </div>            
         </div>
     </header>
@@ -134,10 +134,7 @@
                     </div>
                 </div>
             </div>
-            
-            
         </main>
-
         <div class="mx-auto max-w-8xl px-2 my-4 py-4 text-center">
             <h2 class="font-bold text-3xl">Bebidas</h2>
         </div>
@@ -177,8 +174,6 @@
                 </div>
             </div>
         </div>
-
-
         <div class="mx-auto max-w-8xl px-2 my-4 py-4 text-center">
             <h2 class="font-bold text-3xl">Doces</h2>
         </div>
@@ -219,45 +214,44 @@
             </div>
     </div>
     
-    
-    <div class="bg-black/60 w-full h-full fixed top-0 left-0 z-[99] flex items-center justify-center hidden" id="cart-modal">
+    <div class="bg-black/60 w-full h-full fixed top-0 left-0 z-[99] items-center justify-center hidden" id="cart-modal">
         <div class="bg-white p-5 rounded-md min-w-[90%] md:min-w-[600px]">
             <h2 class="text-center font-bold text-2xl mb-2">Meu carrinho</h2>
-            
             <div id="cart-items" class="flex flex-col gap-2"></div>
-    
             <p class="font-bold">Total: <span id="cart-total">0.00</span></p>
             <p class="font-bold mt-4">Endereço de entrega:</p>
-            
             <input type="text" class="w-full border border-gray-300 rounded-md p-2 my-1" placeholder="Digite seu endereço" id="address" />
             <p class="text-red-600 hidden" id="address-warn">Digite seu endereço completo.</p>
-            
             <p class="mt-2 font-semibold" id="display-address"></p>
-            
             <div class="flex items-center mt-2">
-                <input type="checkbox" id="confirm-address" class="mr-2">
-                <label for="confirm-address">Confirme que o endereço está correto</label>
+                <input type="checkbox" id="confirm-address" class="mr-2" onchange="toggleCheckoutButton()">
+                <label for="confirm-address">Confirme</label>
             </div>
+                        
+            <div class="text-center mt-4 border-t border-green-500 pt-4">
+                <p class="text-lg font-semibold">Opções de pagamento:</p>
             
-            <div class="text-center mt-4">
-                <p>Opções de pagamento: </p>
-            </div>
-            <div class="flex justify-center gap-4 mt-4">
-                <button id="buy-with-pix-btn" class="bg-green-500 text-white px-4 py-2 rounded-full">Comprar com PIX</button>
-                <button>
-                    <a href="https://www.paypal.com/br/home" target="_blank" class="bg-blue-500 text-white px-4 py-2 rounded-full">Comprar com PayPal</a>
-                </button>
-                <button>
-                    <a href="https://www.mercadopago.com.br/" target="_blank" class="bg-yellow-500 text-white px-4 py-2 rounded-full">Comprar com Mercado Pago</a>
-                </button>
+                <div class="flex flex-wrap justify-center gap-4 mt-2">
+                    <div class="flex items-center">
+                        <input type="checkbox" id="pix-checkbox" class="mr-2" onclick="selectPaymentOption('pix')">
+                        <label for="pix-checkbox">Comprar com PIX</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="paypal-checkbox" class="mr-2" onclick="selectPaymentOption('paypal')">
+                        <label for="paypal-checkbox">Comprar com PayPal</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="mercadoPago-checkbox" class="mr-2" onclick="selectPaymentOption('mercadoPago')">
+                        <label for="mercadoPago-checkbox">Comprar com Mercado Pago</label>
+                    </div>
+                </div>
             </div>
             <div class="flex justify-between mt-5">
-                <button class="bg-green-600 text-white px-4 py-2 rounded-md" id="close-modal-btn">Fechar</button>
-                <button class="bg-red-600 text-white px-4 py-2 rounded-md" id="checkout-btn" disabled>Finalizar pedido</button>
+                <button class="bg-green-600 text-white px-4 py-2 rounded-md" id="close-modal-btn" onclick="closeModal()">Fechar</button>
+                <button class="bg-red-600 text-white px-4 py-2 rounded-md" id="checkout-btn" disabled onclick="checkout()">Finalizar pedido</button>
             </div>
         </div>
     </div>
-    
     
 
     <footer class=" w-full bg-green-600 py-3 fixed bottom-0 z-40 flex items-center justify-center">
