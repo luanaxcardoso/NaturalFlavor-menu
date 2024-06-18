@@ -10,7 +10,6 @@ const addressInput = document.getElementById('address');
 const addressWarn = document.getElementById('address-warn');
 const displayAddress = document.getElementById('display-address');
 
-
 let cart = [];
 let address = '';
 
@@ -30,11 +29,9 @@ closeModalBtn.addEventListener('click', () => {
 
 menu.addEventListener('click', (e) => {
   let parentButton = e.target.closest('.add-to-cart-btn');
-
   if (parentButton) {
     const name = parentButton.getAttribute('data-name');
     const price = parseFloat(parentButton.getAttribute('data-price'));
-
     addToCart(name, price);
   }
 });
@@ -70,8 +67,7 @@ function updateCartModal() {
   });
   cartTotal.innerText = `R$${total.toFixed(2)}`;
   cartCounter.innerText = cart.reduce((acc, item) => acc + item.quantity, 0);
-  
-  
+
   if (address.trim() !== '') {
     displayAddress.textContent = `Endereço de entrega: ${address}`;
   } else {
@@ -81,29 +77,32 @@ function updateCartModal() {
 
 checkoutBtn.addEventListener('click', () => {
   if (cart.length === 0) {
-      showAlert('Seu carrinho está vazio!');
+    showAlert('Seu carrinho está vazio!');
   } else if (addressInput.value === '') {
-      addressWarn.style.display = 'block';
+    addressWarn.style.display = 'block';
   } else {
-      const confirmationMessage = 'Confirme o pedido antes de efetuar o pagamento!\n\n';
-      const orderDetails = cart.map(item => `${item.quantity}x ${item.name} - R$${(item.quantity * item.price).toFixed(2)}`).join('\n');
-      const totalAmount = `Total: R$${cartTotal.innerText}`;
-      const deliveryAddress = `Endereço de entrega: ${addressInput.value}`;
+    const confirmationMessage = 'Confirme o pedido!\n\n';
+    const orderDetails = cart.map(item => `${item.quantity}x ${item.name} - R$${(item.quantity * item.price).toFixed(2)}`).join('\n');
+    const totalAmount = `Total: R$${cartTotal.innerText}`;
+    const deliveryAddress = `Endereço de entrega: ${addressInput.value}`;
+    const finalMessage = `${confirmationMessage}${orderDetails}\n${totalAmount}\n${deliveryAddress}`;
 
-      const finalMessage = `${confirmationMessage}${orderDetails}\n${totalAmount}\n${deliveryAddress}`;
+    showAlert(finalMessage, () => {
+      setTimeout(() => {
+        window.location.href = 'pag.html';
+      }, 500);
+    });
 
-      showAlert(finalMessage);
-
-      cart = [];
-      updateCartModal();
-      addressInput.value = '';
-      addressWarn.style.display = 'none';
-      cartModal.style.display = 'none';
+    
+    cart = [];
+    updateCartModal();
+    addressInput.value = '';
+    addressWarn.style.display = 'none';
+    cartModal.style.display = 'none';
   }
 });
 
-
-function showAlert(message) {
+function showAlert(message, callback) {
   const alertModal = document.createElement('div');
   alertModal.className = 'fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50';
 
@@ -112,13 +111,14 @@ function showAlert(message) {
 
   const alertMessage = document.createElement('p');
   alertMessage.innerText = message;
-  alertMessage.className = 'mb-4 whitespace-pre-wrap';  
+  alertMessage.className = 'mb-4 whitespace-pre-wrap';
 
   const closeAlertBtn = document.createElement('button');
   closeAlertBtn.innerText = 'OK';
   closeAlertBtn.className = 'bg-red-500 text-white px-4 py-2 rounded hover:bg-green-600';
   closeAlertBtn.addEventListener('click', () => {
-      document.body.removeChild(alertModal);
+    document.body.removeChild(alertModal);
+    if (callback) callback();
   });
 
   alertBox.appendChild(alertMessage);
@@ -126,7 +126,6 @@ function showAlert(message) {
   alertModal.appendChild(alertBox);
   document.body.appendChild(alertModal);
 }
-
 
 addressInput.addEventListener('input', () => {
   addressWarn.style.display = 'none';
@@ -155,11 +154,9 @@ cartItemsContainer.addEventListener('click', (e) => {
   }
 });
 
-
 document.getElementById('close-modal-btn').addEventListener('click', function () {
-document.getElementById('cart-modal').classList.add('hidden');
+  document.getElementById('cart-modal').classList.add('hidden');
 });
-
 
 document.getElementById('checkout-btn').addEventListener('click', function () {
   const address = document.getElementById('address').value.trim();
@@ -174,27 +171,27 @@ document.getElementById('checkout-btn').addEventListener('click', function () {
 });
 
 document.getElementById('address').addEventListener('input', function() {
-    document.getElementById('display-address').textContent = this.value;
+  document.getElementById('display-address').textContent = this.value;
 });
 
 document.getElementById('confirm-address').addEventListener('change', function() {
-    document.getElementById('checkout-btn').disabled = !this.checked;
+  document.getElementById('checkout-btn').disabled = !this.checked;
 });
 
 function toggleCheckoutButton() {
-    const confirmAddressCheckbox = document.getElementById('confirm-address');
-    const checkoutBtn = document.getElementById('checkout-btn');
+  const confirmAddressCheckbox = document.getElementById('confirm-address');
+  const checkoutBtn = document.getElementById('checkout-btn');
 
-    const isAddressConfirmed = confirmAddressCheckbox.checked;
-    const isPaymentSelected = selectedPaymentOption !== '';
+  const isAddressConfirmed = confirmAddressCheckbox.checked;
+  const isPaymentSelected = selectedPaymentOption !== '';
 
-    checkoutBtn.disabled = !(isAddressConfirmed && isPaymentSelected);
+  checkoutBtn.disabled = !(isAddressConfirmed && isPaymentSelected);
 }
 
 document.getElementById('whatsapp-btn').addEventListener('click', function(event) {
   event.preventDefault();
-  const phone = '5512991871456'; 
-  const message = 'Tem alguma dúvida ou quer fazer seu pedido? Estamos aqui para te ajudar!' 
+  const phone = '5512991871456';
+  const message = 'Tem alguma dúvida ou quer fazer seu pedido? Estamos aqui para te ajudar!';
   const url = `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
   window.open(url, '_blank');
 });
