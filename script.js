@@ -178,20 +178,14 @@ document.getElementById('confirm-address').addEventListener('change', function()
   document.getElementById('checkout-btn').disabled = !this.checked;
 });
 
-function toggleCheckoutButton() {
-  const confirmAddressCheckbox = document.getElementById('confirm-address');
-  const checkoutBtn = document.getElementById('checkout-btn');
-
-  const isAddressConfirmed = confirmAddressCheckbox.checked;
-  const isPaymentSelected = selectedPaymentOption !== '';
-
-  checkoutBtn.disabled = !(isAddressConfirmed && isPaymentSelected);
-}
 
 document.getElementById('whatsapp-btn').addEventListener('click', function(event) {
-  event.preventDefault();
+  event.preventDefault(); 
+  
   const phone = '5512991871456';
-  const message = 'Tem alguma dúvida ou quer fazer seu pedido? Estamos aqui para te ajudar!';
+  const message = 'Olá! Gostaria de fazer um pedido ou tirar alguma dúvida?';
   const url = `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
+  
   window.open(url, '_blank');
 });
+
