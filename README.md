@@ -3,7 +3,7 @@
 ### É um projeto de menu dinâmico para um restaurante vegetariano.
 
 ----
-## Funcionalidades
+### Funcionalidades
 
 - Adicionar produtos ao carrinho.
 - Remover produtos do carrinho.
@@ -13,9 +13,9 @@
 - Finalizar pedido.
 - Redirecionamento para WhatsApp 
 ---
-Instalação
-git clone <URL do repositório>
-cd NaturalFlavor
+### Instalação
+- git clone <URL do repositório>
+- cd NaturalFlavor
 ---
 ```bash	
 npm install
