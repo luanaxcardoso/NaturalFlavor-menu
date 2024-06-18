@@ -1,4 +1,4 @@
-# Natural Flavor
+# 🌿🍔 Natural Flavor 🍔🌿
 
 ### É um projeto de menu dinâmico para um restaurante vegetariano.
 
