@@ -29,7 +29,9 @@ npm run dev
 ### Ele foi baseado no projeto cardápio do [Sujeto Programador](https://github.com/sujeitoprogramador)
 
 
-https://github.com/luanaxcardoso/NaturalFlavor-menu/assets/112970416/472731ea-1991-4046-a4e2-908e0fb13b87
+
+
+https://github.com/luanaxcardoso/NaturalFlavor-menu/assets/112970416/14247e38-5e95-4bc8-905f-525d91495d12
 
 
 
