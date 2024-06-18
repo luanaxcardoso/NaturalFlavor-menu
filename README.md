@@ -1,6 +1,6 @@
 # Natural Flavor
 
-### É um projeto de e-commerce para um restaurante vegetariano.
+### É um projeto de menu dinâmico para um restaurante vegetariano.
 
 ### Este projeto é uma versão baseada no projeto cardápio do [Sujeto Programador](https://github.com/sujeitoprogramador)
 ----
