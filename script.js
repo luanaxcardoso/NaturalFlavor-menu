@@ -179,13 +179,12 @@ document.getElementById('confirm-address').addEventListener('change', function()
 });
 
 
-document.getElementById('whatsapp-btn').addEventListener('click', function(event) {
-  event.preventDefault(); 
+function abrirWhatsApp() {
   
-  const phone = '5512991871456';
-  const message = 'Olá! Gostaria de fazer um pedido ou tirar alguma dúvida?';
-  const url = `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
-  
-  window.open(url, '_blank');
-});
+  let telefone = "5512991871456";
+  let mensagem = "Olá! Como vai? Poderia ajudar no meu pedido?";
 
+  let url = `https://api.whatsapp.com/send?phone=${telefone}&text=${encodeURIComponent(mensagem)}`;
+
+  window.open(url, '_blank');
+}
