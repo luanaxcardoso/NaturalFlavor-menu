@@ -26,7 +26,6 @@ npx tailwindcss init
 ```bash
 npm run dev
 ```
-### Ele foi baseado no projeto cardápio do [Sujeto Programador](https://github.com/sujeitoprogramador)
 
 
 
