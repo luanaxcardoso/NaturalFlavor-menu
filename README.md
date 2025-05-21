@@ -1,6 +1,6 @@
 # 🌿🍔 Natural Flavor 🍔🌿
 
-## "Desenvolvimento de um Menu Interativo para uma Hamburgueria Vegetariana"
+## "Menu Interativo para uma Hamburgueria Vegetariana"
 
 ----
 ### Funcionalidades
